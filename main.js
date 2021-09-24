@@ -51,17 +51,18 @@ const searchCountries = () => {
 }
 searchCountries();
 
+
 const renderCountries = () => {
   clearContainer();
+  clearList();
+  inputCountry.value = '';
   chosenCountries.forEach((country, i) => {
     let countryContainer = document.createElement('div');
-    countryContainer.className = 'countryContaner';
-
-    let countryHeader = document.createElement('div');
-    countryHeader.className = 'countryHeader';
+    countryContainer.className = 'countryContaner text';
 
     let removeBtn = document.createElement('button');
-    removeBtn.className = 'removeBtn';
+    removeBtn.className = 'removeBtn text';
+    removeBtn.innerHTML = '&#10005;';
     removeBtn.value = country.Country;
     removeBtn.addEventListener('click', e = () => {
       const findRemoveCountry = element => element.Country == removeBtn.value;
@@ -74,36 +75,30 @@ const renderCountries = () => {
     countryName.textContent = country.Country;
     countryName.className = 'countryName';
 
-    let countryData = document.createElement('div');
-    countryData.className = 'countryData';
-
     let ratingSection = document.createElement('div');
     ratingSection.className = 'ratingSection';
 
-    let spRating = document.createElement('h4');
-    spRating.innerHTML = "S&P: <br>" + country.SP + '<br>' + country.SP_Outlook + ' outlook';
+    let spRating = document.createElement('div');
+    spRating.innerHTML = "<h3>S&P</h3>" + country.SP + '<h6>' + country.SP_Outlook + '</h6>';
     spRating.className = 'spRating';
-    let fitchRating = document.createElement('h4');
-    fitchRating.innerHTML = "Fitch: <br>" + country.Fitch + '<br>' + country.Fitch_Outlook + ' outlook';
+
+    let fitchRating = document.createElement('div');
+    fitchRating.innerHTML = "<h3>Fitch:</h3>" + country.Fitch + '<h6>' + country.Fitch_Outlook + '</h6>';
     fitchRating.className = 'fitchRating';
-    let moodysRating = document.createElement('h4');
-    moodysRating.innerHTML = "Moodys: <br>" + country.Moodys + '<br>' + country.Moodys_Outlook + ' outlook';
+
+    let moodysRating = document.createElement('div');
+    moodysRating.innerHTML = "<h3>Moodys:</h3>" + country.Moodys + '<h6>' + country.Moodys_Outlook + '</h6>';
     moodysRating.className = 'fitchRating';
 
     container.appendChild(countryContainer);
-    countryContainer.appendChild(countryHeader);
-
-    countryHeader.appendChild(countryName);
-    countryHeader.appendChild(removeBtn);
-
-    countryContainer.appendChild(countryData);
-    countryData.appendChild(ratingSection);
+    countryContainer.appendChild(removeBtn);
+    countryContainer.appendChild(countryName);
+    countryContainer.appendChild(ratingSection);
 
     ratingSection.appendChild(spRating);
     ratingSection.appendChild(fitchRating);
     ratingSection.appendChild(moodysRating);
   });
-
 }
 
 
