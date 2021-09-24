@@ -5,3 +5,7 @@ li {
 .countryBtn {
   cursor: pointer;
 }
+
+.countryHeader {
+  display: flex;
+}

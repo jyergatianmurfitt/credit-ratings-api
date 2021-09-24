@@ -57,6 +57,19 @@ const renderCountries = () => {
     let countryContainer = document.createElement('div');
     countryContainer.className = 'countryContaner';
 
+    let countryHeader = document.createElement('div');
+    countryHeader.className = 'countryHeader';
+
+    let removeBtn = document.createElement('button');
+    removeBtn.className = 'removeBtn';
+    removeBtn.value = country.Country;
+    removeBtn.addEventListener('click', e = () => {
+      const findRemoveCountry = element => element.Country == removeBtn.value;
+      const removeIndex = chosenCountries.findIndex(findRemoveCountry);
+      chosenCountries.splice(removeIndex, 1);
+      renderCountries();
+    })
+
     let countryName = document.createElement('h2');
     countryName.textContent = country.Country;
     countryName.className = 'countryName';
@@ -78,7 +91,11 @@ const renderCountries = () => {
     moodysRating.className = 'fitchRating';
 
     container.appendChild(countryContainer);
-    countryContainer.appendChild(countryName);
+    countryContainer.appendChild(countryHeader);
+
+    countryHeader.appendChild(countryName);
+    countryHeader.appendChild(removeBtn);
+
     countryContainer.appendChild(countryData);
     countryData.appendChild(ratingSection);
 
