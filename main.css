@@ -20,31 +20,50 @@ body {
   padding: 0;
 }
 
+ul {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 30%;
+}
+
 li {
   list-style: none;
-  color: white;
-  border: 1px solid lightgrey;
-  width: 30%;
-  border-radius: 20px;
-  display: block;
-  margin: auto;
+  color: navy;
   line-height: 1.8;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 li:hover {
   background-color: aliceblue;
-  color: navy;
 }
 
 input {
   border-radius: 20px;
   border: 1px solid lightgrey;
   line-height: 2;
-  font-size: 16px;
   width: 30%;
   color: white;
   background-color: #132440;
   text-align: center;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 14px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 14px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-size: 14px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-size: 14px;
 }
 
 .countryBtn, .removeBtn {
@@ -56,14 +75,18 @@ input {
   justify-content: space-between;
   width: 90%;
   margin: auto;
-  margin: 20px auto;
+  margin: 40px auto;
 }
 
 .countryName {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  max-width: 15%;
+  width: 30%;
+  text-align: left;
+}
+
+.rating {
+  width: 30%;
 }
 
 .removeBtn {
@@ -82,12 +105,27 @@ input {
 }
 
 .ratingSection h3 {
+  font-size: 14px;
+  font-weight: bolder;
+  margin: 0;
+  letter-spacing: 3px;
+  color: grey;
+}
+
+.ratingSection h5 {
   font-weight: 500;
   margin: 0;
+  font-size: 26px;
 }
 
 .ratingSection h6 {
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
+}
+
+@media (max-width: 720px) {
+  input {
+    width: 50%;
+  }
 }

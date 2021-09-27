@@ -79,24 +79,24 @@ const renderCountries = () => {
     ratingSection.className = 'ratingSection';
 
     let spRating = document.createElement('div');
-    spRating.innerHTML = "<h3>S&P</h3>" + country.SP + '<h6>' + country.SP_Outlook + '</h6>';
-    spRating.className = 'spRating';
+    spRating.innerHTML = "<h3>S&P</h3><h5>" + country.SP + '</h5><h6>' + country.SP_Outlook + '</h6>';
+    spRating.className = 'spRating rating';
 
     let fitchRating = document.createElement('div');
-    fitchRating.innerHTML = "<h3>Fitch:</h3>" + country.Fitch + '<h6>' + country.Fitch_Outlook + '</h6>';
-    fitchRating.className = 'fitchRating';
+    fitchRating.innerHTML = "<h3>Fitch</h3><h5>" + country.Fitch + '</h5><h6>' + country.Fitch_Outlook + '</h6>';
+    fitchRating.className = 'fitchRating rating';
 
     let moodysRating = document.createElement('div');
-    moodysRating.innerHTML = "<h3>Moodys:</h3>" + country.Moodys + '<h6>' + country.Moodys_Outlook + '</h6>';
-    moodysRating.className = 'fitchRating';
+    moodysRating.innerHTML = "<h3>Moodys</h3><h5>" + country.Moodys + '</h5><h6>' + country.Moodys_Outlook + '</h6>';
+    moodysRating.className = 'moodysRating rating';
 
     container.appendChild(countryContainer);
     countryContainer.appendChild(removeBtn);
     countryContainer.appendChild(countryName);
     countryContainer.appendChild(ratingSection);
 
-    ratingSection.appendChild(spRating);
     ratingSection.appendChild(fitchRating);
+    ratingSection.appendChild(spRating);
     ratingSection.appendChild(moodysRating);
   });
 }
