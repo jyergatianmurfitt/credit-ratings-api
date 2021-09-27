@@ -9,7 +9,6 @@ This app was built to display recent credit-ratings data. The aim of this projec
 - [HTML]
 - [CSS]
 - [JS]
-- [Bootstrap]
 - [API]
 
 ## Future changes/added functions
