@@ -17,6 +17,8 @@ let processRates = promise => {
 const inputCountry = document.querySelector('.inputCountry');
 const inputList = document.querySelector('.inputList');
 const chosenCountries = [];
+const chosenCountryNames = [];
+let chosenCountryContainer = '';
 const filterCountries = country => {
   const inputCountries = new RegExp('^' + inputCountry.value, 'i');
   return inputCountries.test(country.Country);
@@ -40,8 +42,23 @@ const searchCountries = () => {
         inputList.appendChild(countryBtn);
 
         countryBtn.addEventListener('click', e = () => {
-          chosenCountries.push(country);
-          renderCountries();
+          if(chosenCountryNames.includes(countryBtn.innerHTML)) {
+            chosenCountryContainer = document.querySelector(`#container${chosenCountryNames.indexOf(countryBtn.innerHTML)}`);
+            chosenCountryContainer.style.backgroundColor = 'rgba(255,255,255, 0.9)';
+            chosenCountryContainer.style.color = 'navy';
+            setTimeout(function(){
+              chosenCountryContainer.style.backgroundColor = 'transparent';
+              chosenCountryContainer.style.color = 'white';
+              chosenCountryContainer.style.transition = 'all 500ms ease-in-out';
+            }, 500);
+            chosenCountryContainer.style.transition = 'none';
+            clearList();
+            inputCountry.value = '';
+          } else {
+            chosenCountries.push(country);
+            chosenCountryNames.push(country.Country);
+            renderCountries();
+          }
         })
       });
     } else {
@@ -55,10 +72,12 @@ searchCountries();
 const renderCountries = () => {
   clearContainer();
   clearList();
+  let id = 0;
   inputCountry.value = '';
   chosenCountries.forEach((country, i) => {
     let countryContainer = document.createElement('div');
     countryContainer.className = 'countryContaner text';
+    countryContainer.id = 'container' + id;
 
     let removeBtn = document.createElement('button');
     removeBtn.className = 'removeBtn text';
@@ -68,6 +87,7 @@ const renderCountries = () => {
       const findRemoveCountry = element => element.Country == removeBtn.value;
       const removeIndex = chosenCountries.findIndex(findRemoveCountry);
       chosenCountries.splice(removeIndex, 1);
+      chosenCountryNames.splice(removeIndex, 1);
       renderCountries();
     })
 
@@ -98,6 +118,8 @@ const renderCountries = () => {
     ratingSection.appendChild(fitchRating);
     ratingSection.appendChild(spRating);
     ratingSection.appendChild(moodysRating);
+
+    id++;
   });
 }
 

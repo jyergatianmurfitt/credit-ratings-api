@@ -76,6 +76,7 @@ input {
   width: 90%;
   margin: auto;
   margin: 40px auto;
+  border-radius: 5px;
 }
 
 .countryName {
