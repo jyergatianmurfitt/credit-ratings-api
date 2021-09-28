@@ -29,6 +29,16 @@ const clearList = () => {
 const clearContainer = () => {
   container.innerHTML = '';
 }
+const flashCountry = () => {
+  chosenCountryContainer.style.backgroundColor = 'rgba(255,255,255, 0.9)';
+  chosenCountryContainer.style.color = 'navy';
+  setTimeout(function(){
+    chosenCountryContainer.style.backgroundColor = 'transparent';
+    chosenCountryContainer.style.color = 'white';
+    chosenCountryContainer.style.transition = 'all 250ms ease-in-out';
+  }, 250);
+  chosenCountryContainer.style.transition = 'none';
+}
 
 const searchCountries = () => {
   inputCountry.addEventListener('keyup', e = () => {
@@ -44,20 +54,15 @@ const searchCountries = () => {
         countryBtn.addEventListener('click', e = () => {
           if(chosenCountryNames.includes(countryBtn.innerHTML)) {
             chosenCountryContainer = document.querySelector(`#container${chosenCountryNames.indexOf(countryBtn.innerHTML)}`);
-            chosenCountryContainer.style.backgroundColor = 'rgba(255,255,255, 0.9)';
-            chosenCountryContainer.style.color = 'navy';
-            setTimeout(function(){
-              chosenCountryContainer.style.backgroundColor = 'transparent';
-              chosenCountryContainer.style.color = 'white';
-              chosenCountryContainer.style.transition = 'all 500ms ease-in-out';
-            }, 500);
-            chosenCountryContainer.style.transition = 'none';
+            flashCountry();
             clearList();
             inputCountry.value = '';
           } else {
             chosenCountries.push(country);
             chosenCountryNames.push(country.Country);
             renderCountries();
+            chosenCountryContainer = document.querySelector(`#container${chosenCountryNames.length - 1 }`);
+            flashCountry();
           }
         })
       });
