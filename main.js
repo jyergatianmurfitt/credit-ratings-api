@@ -1,5 +1,5 @@
 const container = document.querySelector('.container');
-let allData = '';
+let allData = [];
 ///////////////////////////Call data//////////////////////////
 Promise.all([
   fetch('https://api.tradingeconomics.com/ratings/all?c=guest:guest&format=json')
@@ -10,9 +10,19 @@ Promise.all([
 let processRates = promise => {
   promise.then(data => {
     allData = data;
+    console.log(allData)
+    allData.forEach((data, i) => {
+      if(data.Country == 'United States ' ||
+      data.Country == 'China' ||
+      data.Country == 'Japan' ||
+      data.Country == 'Germany' ||
+      data.Country == 'United Kingdom') {
+        chosenCountries.push(data);
+      }
+    });
+    renderCountries();
   })
 }
-
 
 const inputCountry = document.querySelector('.inputCountry');
 const inputList = document.querySelector('.inputList');
@@ -39,6 +49,8 @@ const flashCountry = () => {
   }, 250);
   chosenCountryContainer.style.transition = 'none';
 }
+
+
 
 const searchCountries = () => {
   inputCountry.addEventListener('keyup', e = () => {
@@ -127,14 +139,6 @@ const renderCountries = () => {
     id++;
   });
 }
-
-
-
-
-
-
-
-
 
 
 
