@@ -10,7 +10,6 @@ Promise.all([
 let processRates = promise => {
   promise.then(data => {
     allData = data;
-    console.log(allData)
     allData.forEach((data, i) => {
       if(data.Country == 'United States ' ||
       data.Country == 'China' ||
@@ -18,6 +17,7 @@ let processRates = promise => {
       data.Country == 'Germany' ||
       data.Country == 'United Kingdom') {
         chosenCountries.push(data);
+        chosenCountryNames.push(data.Country)
       }
     });
     renderCountries();
