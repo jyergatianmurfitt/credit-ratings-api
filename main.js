@@ -1,4 +1,7 @@
 const container = document.querySelector('.container');
+let chosenCountries = [];
+let chosenCountryNames = [];
+let chosenCountryContainer = '';
 let allData = [];
 ///////////////////////////Call data//////////////////////////
 Promise.all([
@@ -10,25 +13,31 @@ Promise.all([
 let processRates = promise => {
   promise.then(data => {
     allData = data;
-    allData.forEach((data, i) => {
-      if(data.Country == 'United States ' ||
-      data.Country == 'China' ||
-      data.Country == 'Japan' ||
-      data.Country == 'Germany' ||
-      data.Country == 'United Kingdom') {
-        chosenCountries.push(data);
-        chosenCountryNames.push(data.Country)
+    if(localStorage.length > 0) {
+      for(let i = 0; i < localStorage.length; i++) {
+        let getStoredItem = localStorage.getItem(localStorage.key(i));
+        chosenCountries.push(JSON.parse(getStoredItem));
+        chosenCountryNames.push(JSON.parse(getStoredItem).Country)
       }
-    });
+    } else {
+      allData.forEach((country, i) => {
+        if(country.Country == 'United States ' ||
+        country.Country == 'China' ||
+        country.Country == 'Japan' ||
+        country.Country == 'Germany' ||
+        country.Country == 'United Kingdom') {
+          chosenCountries.push(country);
+          chosenCountryNames.push(country.Country);
+          localStorage.setItem(`${country.Country}`, JSON.stringify(country));
+        }
+      });
+    }
     renderCountries();
   })
 }
 
 const inputCountry = document.querySelector('.inputCountry');
 const inputList = document.querySelector('.inputList');
-const chosenCountries = [];
-const chosenCountryNames = [];
-let chosenCountryContainer = '';
 const filterCountries = country => {
   const inputCountries = new RegExp('^' + inputCountry.value, 'i');
   return inputCountries.test(country.Country);
@@ -62,19 +71,18 @@ const searchCountries = () => {
         countryBtn.className = 'countryBtn';
         countryBtn.textContent = country.Country;
         inputList.appendChild(countryBtn);
-
         countryBtn.addEventListener('click', e = () => {
           if(chosenCountryNames.includes(countryBtn.innerHTML)) {
-            chosenCountryContainer = document.querySelector(`#container${chosenCountryNames.indexOf(countryBtn.innerHTML)}`);
+            chosenCountryContainer = document.querySelector(`#${country.Country}`);
+            console.log(`#${country.Country}`)
             flashCountry();
             clearList();
             inputCountry.value = '';
           } else {
             chosenCountries.push(country);
-            chosenCountryNames.push(country.Country);
+            chosenCountryNames.push(countryBtn.innerHTML);
             renderCountries();
-            chosenCountryContainer = document.querySelector(`#container${chosenCountryNames.length - 1 }`);
-            flashCountry();
+            localStorage.setItem(`${country.Country}`, JSON.stringify(country));
           }
         })
       });
@@ -89,12 +97,11 @@ searchCountries();
 const renderCountries = () => {
   clearContainer();
   clearList();
-  let id = 0;
   inputCountry.value = '';
   chosenCountries.forEach((country, i) => {
     let countryContainer = document.createElement('div');
     countryContainer.className = 'countryContaner text';
-    countryContainer.id = 'container' + id;
+    countryContainer.id = country.Country;
 
     let removeBtn = document.createElement('button');
     removeBtn.className = 'removeBtn text';
@@ -106,6 +113,7 @@ const renderCountries = () => {
       chosenCountries.splice(removeIndex, 1);
       chosenCountryNames.splice(removeIndex, 1);
       renderCountries();
+      localStorage.removeItem(localStorage.key(removeIndex));
     })
 
     let countryName = document.createElement('h2');
@@ -135,8 +143,6 @@ const renderCountries = () => {
     ratingSection.appendChild(fitchRating);
     ratingSection.appendChild(spRating);
     ratingSection.appendChild(moodysRating);
-
-    id++;
   });
 }
 
