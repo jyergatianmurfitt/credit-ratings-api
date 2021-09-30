@@ -127,6 +127,40 @@ input {
 
 @media (max-width: 720px) {
   input {
-    width: 50%;
+    width: 90%;
+    line-height: 6;
+  }
+
+  .text {
+    font-size: 32px;
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 28px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-size: 28px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    font-size: 28px;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    font-size: 28px;
+  }
+
+  .removeBtn {
+    font-size: 45px;
+  }
+
+  .ratingSection h3 {
+    font-size: 26px;
+  }
+
+  .ratingSection h5 {
+    font-size: 38px;
+  }
+
+  .ratingSection h6 {
+    font-size: 26px;
   }
 }
