@@ -128,7 +128,7 @@ input {
 @media (max-width: 720px) {
   input {
     width: 90%;
-    line-height: 6;
+    line-height: 4;
   }
 
   .text {
@@ -162,5 +162,17 @@ input {
 
   .ratingSection h6 {
     font-size: 26px;
+  }
+
+  .countryContaner {
+    flex-wrap: wrap;
+  }
+
+  ul {
+    width: 90%;
+  }
+
+  li.countryBtn {
+    line-height: 3;
   }
 }
