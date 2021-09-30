@@ -152,6 +152,10 @@ input {
     font-size: 45px;
   }
 
+  .countryName {
+    width: auto;
+  }
+
   .ratingSection h3 {
     font-size: 26px;
   }
@@ -174,5 +178,9 @@ input {
 
   li.countryBtn {
     line-height: 3;
+  }
+
+  .ratingSection {
+    width: 100%;
   }
 }
