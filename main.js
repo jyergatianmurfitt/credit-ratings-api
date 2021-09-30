@@ -28,7 +28,7 @@ let processRates = promise => {
         country.Country == 'United Kingdom') {
           chosenCountries.push(country);
           chosenCountryNames.push(country.Country);
-          localStorage.setItem(`${country.Country}`, JSON.stringify(country));
+          localStorage.setItem(`${country.Country.replace(/\s/g, '')}`, JSON.stringify(country));
         }
       });
     }
@@ -73,8 +73,8 @@ const searchCountries = () => {
         inputList.appendChild(countryBtn);
         countryBtn.addEventListener('click', e = () => {
           if(chosenCountryNames.includes(countryBtn.innerHTML)) {
-            chosenCountryContainer = document.querySelector(`#${country.Country}`);
-            console.log(`#${country.Country}`)
+            chosenCountryContainer = document.querySelector(`#${country.Country.replace(/\s/g, '')}`);
+            console.log(`#${country.Country.replace(/\s/g, '')}`)
             flashCountry();
             clearList();
             inputCountry.value = '';
@@ -82,7 +82,7 @@ const searchCountries = () => {
             chosenCountries.push(country);
             chosenCountryNames.push(countryBtn.innerHTML);
             renderCountries();
-            localStorage.setItem(`${country.Country}`, JSON.stringify(country));
+            localStorage.setItem(`${country.Country.replace(/\s/g, '')}`, JSON.stringify(country));
           }
         })
       });
@@ -101,7 +101,7 @@ const renderCountries = () => {
   chosenCountries.forEach((country, i) => {
     let countryContainer = document.createElement('div');
     countryContainer.className = 'countryContaner text';
-    countryContainer.id = country.Country;
+    countryContainer.id = country.Country.replace(/\s/g, '');
 
     let removeBtn = document.createElement('button');
     removeBtn.className = 'removeBtn text';
