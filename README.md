@@ -1,8 +1,5 @@
 # Credit-Ratings App
-A credit ratings app built using the Trading Economics API. This app allows users to choose a country and see its ratings and outlook according to Fitch, Moodys and S&P.
-
-## Motivation
-This app was built to display recent credit-ratings data. The aim of this project is to turn it into a complete analysis dashboard.
+A credit ratings app built using the Trading Economics API. This app allows users to choose a country and see its ratings and outlook according to Fitch, Moodys and S&P. The aim of this project is to turn it into a complete analysis dashboard.
 
 ## Tech/framework used
 <b>Built with</b>
@@ -13,9 +10,6 @@ This app was built to display recent credit-ratings data. The aim of this projec
 
 ## Future changes/added functions
 1./ Data for GDP, GDP per capita, unemployment rates and recent news will be added with different API sources.
-
-## Installation
-To install this project simply click the green 'Code' button and download the ZIP file. Save the file to your desired directory and edit the contents in your favourite text editor.
 
 ## Contribute
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
